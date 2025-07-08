@@ -1,8 +1,11 @@
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const SkillsSection = () => {
+  const [animatedSkills, setAnimatedSkills] = useState<{ [key: string]: boolean }>({});
+  const sectionRef = useRef<HTMLElement>(null);
+
   const skillCategories = [
     {
       title: 'Frontend Technologies',
@@ -51,8 +54,35 @@ const SkillsSection = () => {
     'Docker', 'CI/CD', 'GitHub Actions', 'WordPress', 'PSD to React', 'PWA Development'
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Animate skills with staggered delay
+            skillCategories.forEach((category, categoryIndex) => {
+              category.skills.forEach((skill, skillIndex) => {
+                const skillKey = `${categoryIndex}-${skillIndex}`;
+                setTimeout(() => {
+                  setAnimatedSkills(prev => ({ ...prev, [skillKey]: true }));
+                }, (categoryIndex * 200) + (skillIndex * 100));
+              });
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="skills" className="py-20 bg-gray-50">
+    <section ref={sectionRef} id="skills" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Technologies</h2>
@@ -63,34 +93,46 @@ const SkillsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+          {skillCategories.map((category, categoryIndex) => (
+            <Card key={categoryIndex} className="hover:shadow-lg transition-shadow transform hover:scale-105 duration-300">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-gray-900 text-center">
                   {category.title}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span className="font-medium text-gray-700">{skill.name}</span>
-                      <span className="text-primary font-semibold">{skill.level}%</span>
+                {category.skills.map((skill, skillIndex) => {
+                  const skillKey = `${categoryIndex}-${skillIndex}`;
+                  const isAnimated = animatedSkills[skillKey];
+                  
+                  return (
+                    <div key={skillIndex} className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="font-medium text-gray-700">{skill.name}</span>
+                        <span className={`text-primary font-semibold transition-all duration-1000 ${
+                          isAnimated ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-4'
+                        }`}>
+                          {isAnimated ? `${skill.level}%` : '0%'}
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                        <div 
+                          className="bg-primary h-2 rounded-full transition-all duration-1500 ease-out transform"
+                          style={{ 
+                            width: isAnimated ? `${skill.level}%` : '0%',
+                            transform: isAnimated ? 'translateX(0)' : 'translateX(-100%)'
+                          }}
+                        ></div>
+                      </div>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-primary h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <Card className="p-8">
+        <Card className="p-8 transform hover:scale-105 transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-2xl font-semibold text-gray-900 text-center mb-6">
               Additional Tools & Technologies
@@ -101,7 +143,8 @@ const SkillsSection = () => {
               {tools.map((tool, index) => (
                 <span 
                   key={index}
-                  className="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-colors cursor-default"
+                  className="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all duration-300 cursor-default transform hover:scale-110 animate-fade-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {tool}
                 </span>
