@@ -46,7 +46,7 @@ const AboutSection = () => {
             <div className="relative">
               <div className="w-80 h-80 rounded-full overflow-hidden shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                  src="/lovable-uploads/20c21bdb-fe52-488b-9d3c-c6bfb0aee5bd.png"
                   alt="Sahin Enam - Full Stack Developer"
                   className="w-full h-full object-cover"
                 />
