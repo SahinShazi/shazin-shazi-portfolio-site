@@ -38,18 +38,18 @@ const HeroSection = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-            Hi, I'm <span className="text-primary">Sahin Enam</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+            Hi, I'm <span className="text-primary whitespace-nowrap">Sahin Enam</span>
           </h1>
           
-          <div className="h-20 mb-8">
-            <p className="text-xl md:text-2xl text-gray-600 font-medium">
+          <div className="h-16 sm:h-20 mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium">
               {displayedText}
               <span className="animate-pulse">|</span>
             </p>
           </div>
 
-          <p className="text-lg text-gray-700 mb-12 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-700 mb-12 max-w-2xl mx-auto leading-relaxed">
             Passionate Full Stack Developer with 5+ years of experience creating scalable, 
             user-focused web applications. Let's build something amazing together!
           </p>
@@ -58,7 +58,7 @@ const HeroSection = () => {
             <Button 
               onClick={() => scrollToSection('projects')}
               size="lg" 
-              className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105"
+              className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105 w-full sm:w-auto"
             >
               <Eye className="mr-2 h-5 w-5" />
               View My Work
@@ -66,7 +66,7 @@ const HeroSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105"
+              className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105 w-full sm:w-auto"
             >
               <Download className="mr-2 h-5 w-5" />
               Download Resume
@@ -75,7 +75,7 @@ const HeroSection = () => {
               onClick={() => scrollToSection('contact')}
               variant="outline" 
               size="lg"
-              className="border-gray-300 text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105"
+              className="border-gray-300 text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105 w-full sm:w-auto"
             >
               <Mail className="mr-2 h-5 w-5" />
               Hire Me
