@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Code, Palette, Wordpress, Zap } from 'lucide-react';
+import { Code, Palette, Globe, Zap } from 'lucide-react';
 
 const ServicesSection = () => {
   const services = [
@@ -16,7 +16,7 @@ const ServicesSection = () => {
       description: 'Creating beautiful, interactive user interfaces with React.js and Tailwind CSS, ensuring pixel-perfect designs and smooth user interactions.'
     },
     {
-      icon: <Wordpress className="w-12 h-12 text-primary" />,
+      icon: <Globe className="w-12 h-12 text-primary" />,
       title: 'WordPress Website & Landing Page',
       description: 'Developing custom WordPress themes and high-converting landing pages tailored to your business needs and brand identity.'
     },
