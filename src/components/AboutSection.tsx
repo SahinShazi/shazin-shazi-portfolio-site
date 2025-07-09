@@ -50,10 +50,10 @@ const AboutSection = () => {
               {/* Inner ring for spacing */}
               <div className="absolute inset-2 rounded-full bg-white"></div>
               
-              {/* Profile image container with proper spacing */}
+              {/* Profile image container with proper spacing and overflow handling */}
               <div className="relative w-72 h-72 rounded-full overflow-hidden shadow-2xl m-4 group-hover:scale-105 transition-transform duration-300">
                 <img 
-                  src="/lovable-uploads/20c21bdb-fe52-488b-9d3c-c6bfb0aee5bd.png"
+                  src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
                   alt="Sahin Enam - Full Stack Developer"
                   className="w-full h-full object-cover object-center animate-float"
                   style={{ animationDuration: '4s' }}
