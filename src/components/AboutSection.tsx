@@ -45,7 +45,7 @@ const AboutSection = () => {
           <div className="flex justify-center py-12">
             <div className="relative group">
               {/* Animated background ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin" style={{ animationDuration: '6s' }}></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin" style={{ animationDuration: '8s' }}></div>
               
               {/* Inner ring for spacing */}
               <div className="absolute inset-2 rounded-full bg-white"></div>
@@ -53,10 +53,10 @@ const AboutSection = () => {
               {/* Profile image container with proper spacing and overflow handling */}
               <div className="relative w-72 h-72 rounded-full overflow-hidden shadow-2xl m-4 group-hover:scale-105 transition-transform duration-300">
                 <img 
-                  src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+                  src="/lovable-uploads/1cc13f08-eac5-4961-b9af-51a895706f7a.png"
                   alt="Sahin Enam - Full Stack Developer"
                   className="w-full h-full object-cover object-center animate-float"
-                  style={{ animationDuration: '4s' }}
+                  style={{ animationDuration: '6s' }}
                 />
                 
                 {/* Subtle overlay for depth */}
@@ -64,14 +64,14 @@ const AboutSection = () => {
               </div>
               
               {/* Availability badge - positioned to not get cut off */}
-              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-primary rounded-full flex items-center justify-center shadow-lg animate-pulse">
+              <div className="absolute -bottom-4 -right-4 w-28 h-28 bg-primary rounded-full flex items-center justify-center shadow-lg animate-pulse" style={{ animationDuration: '3s' }}>
                 <span className="text-white font-bold text-sm text-center">Available<br/>for Work</span>
               </div>
               
               {/* Floating particles */}
-              <div className="absolute top-8 right-8 w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-              <div className="absolute bottom-20 left-8 w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute top-20 left-12 w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
+              <div className="absolute top-8 right-8 w-3 h-3 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '3s' }}></div>
+              <div className="absolute bottom-20 left-8 w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '1s', animationDuration: '3.5s' }}></div>
+              <div className="absolute top-20 left-12 w-2 h-2 bg-pink-400 rounded-full animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '4s' }}></div>
             </div>
           </div>
         </div>

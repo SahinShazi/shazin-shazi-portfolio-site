@@ -59,13 +59,13 @@ const SkillsSection = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Animate skills with staggered delay
+            // Animate skills with slower, more professional staggered delay
             skillCategories.forEach((category, categoryIndex) => {
               category.skills.forEach((skill, skillIndex) => {
                 const skillKey = `${categoryIndex}-${skillIndex}`;
                 setTimeout(() => {
                   setAnimatedSkills(prev => ({ ...prev, [skillKey]: true }));
-                }, (categoryIndex * 200) + (skillIndex * 100));
+                }, (categoryIndex * 400) + (skillIndex * 200));
               });
             });
           }
@@ -85,8 +85,8 @@ const SkillsSection = () => {
     <section ref={sectionRef} id="skills" className="py-20 bg-gray-50 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 animate-pulse">Skills & Technologies</h2>
-          <div className="w-24 h-1 bg-primary mx-auto mb-4 animate-pulse"></div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Skills & Technologies</h2>
+          <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Here are the technologies and tools I work with to create amazing web experiences
           </p>
@@ -94,7 +94,7 @@ const SkillsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {skillCategories.map((category, categoryIndex) => (
-            <Card key={categoryIndex} className="hover:shadow-lg transition-shadow transform hover:scale-105 duration-300 animate-float" style={{ animationDelay: `${categoryIndex * 0.2}s` }}>
+            <Card key={categoryIndex} className="hover:shadow-lg transition-all duration-500 transform hover:scale-105">
               <CardHeader>
                 <CardTitle className="text-lg font-semibold text-gray-900 text-center">
                   {category.title}
@@ -109,7 +109,7 @@ const SkillsSection = () => {
                     <div key={skillIndex} className="space-y-2">
                       <div className="flex justify-between text-sm">
                         <span className="font-medium text-gray-700">{skill.name}</span>
-                        <span className={`text-primary font-semibold transition-all duration-1000 ${
+                        <span className={`text-primary font-semibold transition-all duration-1000 ease-out ${
                           isAnimated ? 'opacity-100 transform translate-x-0' : 'opacity-0 transform translate-x-4'
                         }`}>
                           {isAnimated ? `${skill.level}%` : '0%'}
@@ -117,7 +117,7 @@ const SkillsSection = () => {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                         <div 
-                          className="bg-primary h-2 rounded-full transition-all duration-1500 ease-out transform animate-pulse"
+                          className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-2000 ease-out"
                           style={{ 
                             width: isAnimated ? `${skill.level}%` : '0%',
                             transform: isAnimated ? 'translateX(0)' : 'translateX(-100%)'
@@ -132,8 +132,8 @@ const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="border-4 border-dashed border-primary/30 rounded-xl p-8 bg-gradient-to-r from-blue-50 to-purple-50 shadow-lg">
-          <Card className="p-8 transform hover:scale-105 transition-all duration-300 border-2 border-primary/20">
+        <div className="text-center">
+          <Card className="p-8 transform hover:scale-105 transition-all duration-300">
             <CardHeader>
               <CardTitle className="text-2xl font-semibold text-gray-900 text-center mb-6">
                 Additional Tools & Technologies
@@ -144,8 +144,11 @@ const SkillsSection = () => {
                 {tools.map((tool, index) => (
                   <span 
                     key={index}
-                    className="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all duration-300 cursor-default transform hover:scale-110 animate-fade-in animate-bounce"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary hover:text-white transition-all duration-300 cursor-default transform hover:scale-110"
+                    style={{ 
+                      animationDelay: `${index * 200}ms`,
+                      animation: `fade-in 0.8s ease-out forwards`
+                    }}
                   >
                     {tool}
                   </span>
