@@ -54,7 +54,7 @@ const HeroSection = () => {
             user-focused web applications. Let's build something amazing together!
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
             <Button 
               onClick={() => scrollToSection('projects')}
               size="lg" 
@@ -98,3 +98,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
