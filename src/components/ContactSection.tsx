@@ -13,6 +13,7 @@ const ContactSection = () => {
     email: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,14 +24,34 @@ const ContactSection = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    toast({
-      title: "Message sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
-    });
-    setFormData({ name: '', email: '', message: '' });
+    setIsLoading(true);
+    
+    try {
+      // Create a mailto link to send the email
+      const subject = `Contact Form Message from ${formData.name}`;
+      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+      const mailtoLink = `mailto:rksahinrone@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      // Open the user's default email client
+      window.location.href = mailtoLink;
+      
+      toast({
+        title: "Email client opened!",
+        description: "Your default email application should open with the message pre-filled.",
+      });
+      
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was an issue opening your email client. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -83,7 +104,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" className="py-20 bg-white animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
@@ -135,9 +156,10 @@ const ContactSection = () => {
                 </div>
                 <Button 
                   type="submit" 
+                  disabled={isLoading}
                   className="w-full bg-primary hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
                 >
-                  Send Message
+                  {isLoading ? 'Opening Email...' : 'Send Message'}
                 </Button>
               </form>
             </CardContent>

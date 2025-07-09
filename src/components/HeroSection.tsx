@@ -29,7 +29,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden animate-on-scroll">
       {/* Background Animation Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/2 -right-1/2 w-96 h-96 bg-blue-200 rounded-full opacity-20 animate-float"></div>
@@ -54,7 +54,7 @@ const HeroSection = () => {
             user-focused web applications. Let's build something amazing together!
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-24">
             <Button 
               onClick={() => scrollToSection('projects')}
               size="lg" 
@@ -83,11 +83,11 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        {/* Scroll Indicator - properly centered */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center">
           <button 
             onClick={() => scrollToSection('about')}
-            className="text-gray-600 hover:text-primary transition-colors"
+            className="text-gray-600 hover:text-primary transition-colors flex flex-col items-center"
           >
             <ChevronDown size={32} />
           </button>
@@ -98,4 +98,3 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
-

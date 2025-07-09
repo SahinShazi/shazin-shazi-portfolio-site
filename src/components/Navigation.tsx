@@ -47,7 +47,7 @@ const Navigation = () => {
     <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-2xl font-bold text-primary cursor-pointer" onClick={() => scrollToSection('home')}>
+          <div className="text-lg font-bold text-primary cursor-pointer" onClick={() => scrollToSection('home')}>
             Sahin Enam
           </div>
 
