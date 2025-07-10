@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import YouTubeSection from '@/components/YouTubeSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import ServicesSection from '@/components/ServicesSection';
 import SkillsSection from '@/components/SkillsSection';
@@ -32,6 +33,26 @@ const Index = () => {
       @keyframes shake, @keyframes jiggle, @keyframes wobble {
         to { transform: none; }
       }
+      
+      /* Profile image animation */
+      @keyframes profile-entrance {
+        0% {
+          opacity: 0;
+          transform: scale(0.8) translateY(20px);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.05) translateY(-5px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      
+      .animate-profile-entrance {
+        animation: profile-entrance 1.2s ease-out forwards;
+      }
     `;
     document.head.appendChild(style);
 
@@ -45,6 +66,7 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <AboutSection />
+      <YouTubeSection />
       <ProjectsSection />
       <ServicesSection />
       <SkillsSection />

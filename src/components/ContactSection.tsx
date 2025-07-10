@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, MapPin, Download, Github, Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Download, Github, Linkedin, Twitter, Facebook, Instagram, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 const ContactSection = () => {
@@ -28,16 +28,44 @@ const ContactSection = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate form submission with EmailJS or similar service
-    setTimeout(() => {
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for your message. I'll get back to you soon.",
+    try {
+      // Using Formspree for form handling
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `New contact form submission from ${formData.name}`,
+        })
       });
-      
-      setFormData({ name: '', email: '', message: '' });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for your message. I'll get back to you within 24 hours.",
+          duration: 5000,
+        });
+        
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Failed to send message",
+        description: "There was a technical problem sending your message. Please try again or contact me directly via email.",
+        variant: "destructive",
+        duration: 7000,
+      });
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   const contactInfo = [
@@ -101,7 +129,7 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form - Centered and properly sized */}
+          {/* Contact Form */}
           <Card className="shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader>
               <CardTitle className="text-2xl font-semibold text-gray-900 text-center">Send me a message</CardTitle>
@@ -117,6 +145,7 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full h-12"
+                    disabled={isLoading}
                   />
                 </div>
                 <div>
@@ -128,6 +157,7 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full h-12"
+                    disabled={isLoading}
                   />
                 </div>
                 <div>
@@ -138,15 +168,26 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full min-h-[120px] resize-none"
+                    disabled={isLoading}
                   />
                 </div>
                 <div className="flex justify-center">
                   <Button 
                     type="submit" 
                     disabled={isLoading}
-                    className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 w-full max-w-xs"
+                    className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 w-full max-w-xs flex items-center justify-center gap-2"
                   >
-                    {isLoading ? 'Sending...' : 'Send Message'}
+                    {isLoading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
                 </div>
               </form>

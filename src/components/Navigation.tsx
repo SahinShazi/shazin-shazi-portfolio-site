@@ -10,6 +10,7 @@ const Navigation = () => {
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'youtube', label: 'YouTube' },
     { id: 'projects', label: 'Projects' },
     { id: 'services', label: 'Services' },
     { id: 'skills', label: 'Skills' },
@@ -51,14 +52,15 @@ const Navigation = () => {
     <nav className={`fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm transition-all duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          {/* Logo with new image */}
+          {/* Logo - Only image, no text on desktop */}
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollToSection('home')}>
             <img 
               src="/lovable-uploads/72a5dfcc-ee98-457b-acfa-162f37cbf19a.png" 
               alt="Sahin Enam Logo" 
               className="h-8 w-auto"
             />
-            <span className="text-lg font-bold text-primary hidden sm:block">
+            {/* Text only shows on mobile */}
+            <span className="text-lg font-bold text-primary block sm:hidden">
               Sahin Enam
             </span>
           </div>
@@ -78,7 +80,7 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button - Fixed X icon visibility */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
