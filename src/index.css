@@ -170,6 +170,26 @@ All colors MUST be HSL.
   }
 }
 
+/* Profile image animation - Improved to prevent cutoff */
+@keyframes profile-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-profile-entrance {
+  animation: profile-entrance 1.2s ease-out forwards;
+}
+
 /* Float animation - controlled and smooth */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -202,4 +222,57 @@ button, a, .card {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+/* Responsive utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  .text-7xl {
+    font-size: 3rem;
+    line-height: 1.1;
+  }
+  
+  .text-4xl {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .text-3xl {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .text-7xl {
+    font-size: 4rem;
+    line-height: 1.1;
+  }
+}
+
+/* Ensure full viewport coverage */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
+}
+
+/* Improved mobile navigation */
+@media (max-width: 768px) {
+  .mobile-nav-open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+  }
 }
