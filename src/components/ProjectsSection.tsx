@@ -57,7 +57,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
+    <section id="projects" className="py-20 bg-gray-50 animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
@@ -69,18 +69,20 @@ const ProjectsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="group hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+            <Card key={index} className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 project-card">
               <div className="relative overflow-hidden rounded-t-lg">
                 <img 
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               
               <CardHeader>
-                <CardTitle className="text-xl font-semibold text-gray-900">{project.title}</CardTitle>
+                <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                  {project.title}
+                </CardTitle>
               </CardHeader>
               
               <CardContent className="space-y-4">
@@ -90,7 +92,7 @@ const ProjectsSection = () => {
                   {project.tech.map((tech, techIndex) => (
                     <span 
                       key={techIndex}
-                      className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
+                      className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium hover:bg-primary hover:text-white transition-colors"
                     >
                       {tech}
                     </span>
@@ -98,11 +100,11 @@ const ProjectsSection = () => {
                 </div>
                 
                 <div className="flex gap-3 pt-4">
-                  <Button variant="outline" size="sm" className="flex-1">
+                  <Button variant="outline" size="sm" className="flex-1 hover:bg-primary hover:text-white hover:border-primary transition-all">
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Live Demo
                   </Button>
-                  <Button variant="outline" size="sm" className="flex-1">
+                  <Button variant="outline" size="sm" className="flex-1 hover:bg-gray-800 hover:text-white hover:border-gray-800 transition-all">
                     <Github className="w-4 h-4 mr-2" />
                     GitHub
                   </Button>

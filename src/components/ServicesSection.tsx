@@ -28,7 +28,7 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" className="py-20 bg-white animate-on-scroll">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">My Services</h2>
@@ -40,16 +40,18 @@ const ServicesSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <Card key={index} className="text-center group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+            <Card key={index} className="text-center group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 service-card">
               <CardHeader className="pb-4">
                 <div className="flex justify-center mb-4">
-                  <div className="p-4 bg-blue-50 rounded-full group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                  <div className="p-4 bg-blue-50 rounded-full group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
                     {React.cloneElement(service.icon, {
                       className: "w-12 h-12 group-hover:text-white transition-colors duration-300"
                     })}
                   </div>
                 </div>
-                <CardTitle className="text-xl font-semibold text-gray-900">{service.title}</CardTitle>
+                <CardTitle className="text-xl font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                  {service.title}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 leading-relaxed">{service.description}</p>
@@ -59,7 +61,7 @@ const ServicesSection = () => {
         </div>
 
         <div className="text-center mt-12">
-          <div className="inline-flex items-center px-6 py-3 bg-green-100 text-green-800 rounded-full font-semibold">
+          <div className="inline-flex items-center px-6 py-3 bg-green-100 text-green-800 rounded-full font-semibold hover:bg-green-200 transition-colors">
             ✅ 100% Client Satisfaction Guarantee
           </div>
         </div>

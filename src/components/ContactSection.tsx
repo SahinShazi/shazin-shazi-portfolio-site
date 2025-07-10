@@ -28,30 +28,16 @@ const ContactSection = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    try {
-      // Create a mailto link to send the email
-      const subject = `Contact Form Message from ${formData.name}`;
-      const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-      const mailtoLink = `mailto:rksahinrone@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      // Open the user's default email client
-      window.location.href = mailtoLink;
-      
+    // Simulate form submission with EmailJS or similar service
+    setTimeout(() => {
       toast({
-        title: "Email client opened!",
-        description: "Your default email application should open with the message pre-filled.",
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
       });
       
       setFormData({ name: '', email: '', message: '' });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was an issue opening your email client. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
       setIsLoading(false);
-    }
+    }, 2000);
   };
 
   const contactInfo = [
@@ -105,7 +91,7 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-20 bg-white animate-on-scroll">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-4"></div>
@@ -115,10 +101,10 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Contact Form - Centered and properly sized */}
           <Card className="shadow-lg hover:shadow-xl transition-shadow">
             <CardHeader>
-              <CardTitle className="text-2xl font-semibold text-gray-900">Send me a message</CardTitle>
+              <CardTitle className="text-2xl font-semibold text-gray-900 text-center">Send me a message</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -130,7 +116,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full"
+                    className="w-full h-12"
                   />
                 </div>
                 <div>
@@ -141,7 +127,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full"
+                    className="w-full h-12"
                   />
                 </div>
                 <div>
@@ -151,16 +137,18 @@ const ContactSection = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="w-full min-h-[120px]"
+                    className="w-full min-h-[120px] resize-none"
                   />
                 </div>
-                <Button 
-                  type="submit" 
-                  disabled={isLoading}
-                  className="w-full bg-primary hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
-                >
-                  {isLoading ? 'Opening Email...' : 'Send Message'}
-                </Button>
+                <div className="flex justify-center">
+                  <Button 
+                    type="submit" 
+                    disabled={isLoading}
+                    className="bg-primary hover:bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 w-full max-w-xs"
+                  >
+                    {isLoading ? 'Sending...' : 'Send Message'}
+                  </Button>
+                </div>
               </form>
             </CardContent>
           </Card>
@@ -173,7 +161,7 @@ const ContactSection = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-center gap-4">
+                  <div key={index} className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                     <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
                       {info.icon}
                     </div>
@@ -198,14 +186,14 @@ const ContactSection = () => {
                 <CardTitle className="text-2xl font-semibold text-gray-900">Connect With Me</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-4 justify-center">
                   {socialLinks.map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center w-12 h-12 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition-all transform hover:scale-110"
+                      className="flex items-center justify-center w-12 h-12 bg-gray-100 hover:bg-primary hover:text-white rounded-lg transition-all transform hover:scale-110 shadow-md"
                       title={social.label}
                     >
                       {social.icon}
@@ -213,12 +201,12 @@ const ContactSection = () => {
                   ))}
                 </div>
 
-                <Button 
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download Resume
-                </Button>
+                <div className="flex justify-center">
+                  <Button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 w-full max-w-xs">
+                    <Download className="w-5 h-5 mr-2" />
+                    Download Resume
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>

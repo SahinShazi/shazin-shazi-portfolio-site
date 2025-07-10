@@ -40,19 +40,12 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,18 +91,30 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    /* Remove any unwanted shake animations */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   body {
     @apply bg-background text-foreground;
+    /* Ensure full width and proper centering */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-/* Scroll Animation Classes */
+/* Enhanced Scroll Animation Classes */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 .animate-on-scroll.visible {
@@ -117,10 +122,40 @@ All colors MUST be HSL.
   transform: translateY(0);
 }
 
+/* Project Card Hover Effects */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Service Card Hover Effects */
+.service-card {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.service-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.2);
+}
+
+/* Progress Bar Animations */
+.progress-bar {
+  width: 0%;
+  transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+}
+
+/* Remove any existing shake/jiggle animations */
+@keyframes shake, @keyframes jiggle, @keyframes wobble {
+  to { transform: none !important; }
+}
+
 /* Initialize scroll animations */
 @media (prefers-reduced-motion: no-preference) {
   .animate-on-scroll {
-    animation: slideInUp 0.8s ease-out forwards;
+    animation: slideInUp 1s ease-out forwards;
   }
 }
 
@@ -133,4 +168,38 @@ All colors MUST be HSL.
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Float animation - controlled and smooth */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Ensure proper centering for all containers */
+.max-w-7xl, .max-w-4xl {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Prevent horizontal scroll issues */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, .card {
+  transition: all 0.3s ease;
+}
+
+/* User select classes */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

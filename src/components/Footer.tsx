@@ -6,14 +6,16 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Bottom Section */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-300 flex items-center gap-2 text-sm">
-            © {currentYear} Sahin Enam. Made with <Heart className="w-4 h-4 text-red-500" />
-          </p>
-          <p className="text-gray-300 mt-4 md:mt-0 text-sm">
+        {/* Clean, centered footer layout */}
+        <div className="flex flex-col items-center justify-center space-y-4">
+          <div className="flex items-center gap-2">
+            <p className="text-gray-300 flex items-center gap-2 text-sm">
+              © {currentYear} Sahin Enam. Made with <Heart className="w-4 h-4 text-red-500" />
+            </p>
+          </div>
+          <p className="text-gray-400 text-sm">
             All rights reserved.
           </p>
         </div>
